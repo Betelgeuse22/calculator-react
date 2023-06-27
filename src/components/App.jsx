@@ -28,7 +28,7 @@ function Numbers(props) {
 }
 
 function CountButton(props) {
-  const expressions = /\+|\-|\/|\*| /;
+  const expressions = /[+\-*\\]/;
   const lastNumber = props.data[props.data.length - 1];
 
   function checkExpressionType() {
