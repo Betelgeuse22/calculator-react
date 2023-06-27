@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Box, Text, Button } from '@chakra-ui/react';
+import { evaluate } from 'mathjs';
 
 function Numbers(props) {
   const nums = Array.from(Array(10).keys()).map(number => {
@@ -59,7 +60,7 @@ export const App = () => {
 
   function applyExpression(countedNumber) {
     setCounts(countedNumber);
-    setResult(eval(counts));
+    setResult(evaluate(counts));
   }
 
   return (
@@ -125,7 +126,7 @@ export const App = () => {
               h="40px"
               m="4px"
               onClick={() => {
-                setResult(eval(counts));
+                setResult(evaluate(counts));
               }}
             >
               =
