@@ -1,21 +1,39 @@
 import { ClickCalc } from './ClickCalc';
+import { InputCalc } from './InputCalc';
 
 import { useState } from 'react';
 import { Box, Button } from '@chakra-ui/react';
-import { InputCalc } from './InputCalc';
+import { evaluate } from 'mathjs';
+
+function History(props) {
+  const results = props.data.map(result => {
+    return <Button key={result}>{result}</Button>;
+  });
+  return <Box>{results}</Box>;
+}
 
 export const Calculator = () => {
   const [calcType, setCalcType] = useState('ClickCalc');
+  const [history, setHistory] = useState([]);
+
   let calculator;
+
   switch (calcType) {
     case 'ClickCalc':
-      calculator = <ClickCalc />;
+      calculator = <ClickCalc onClick={updateHistory} />;
       break;
     case 'InputCalc':
-      calculator = <InputCalc />;
+      calculator = <InputCalc onKeyDown={updateHistory} />;
       break;
     default:
-      calculator = <ClickCalc />;
+      calculator = <ClickCalc onClick={updateHistory} />;
+  }
+
+  function updateHistory(calcResult) {
+    if (history.length >= 6) {
+      history.shift();
+    }
+    setHistory(history.concat(evaluate(calcResult)));
   }
 
   return (
@@ -37,7 +55,10 @@ export const Calculator = () => {
         >
           Change CalcType
         </Button>
-        <Box m="10px">{calculator}</Box>
+        <Box m="10px">
+          <History data={history} />
+          {calculator}
+        </Box>
       </Box>
     </>
   );

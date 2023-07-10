@@ -56,7 +56,7 @@ function CountButton(props) {
   );
 }
 
-export const ClickCalc = () => {
+export const ClickCalc = props => {
   const [counts, setCounts] = useState('0');
   const [result, setResult] = useState(' ');
 
@@ -132,6 +132,7 @@ export const ClickCalc = () => {
               onClick={() => {
                 setResult(evaluate(counts));
                 setCounts('0');
+                props.onClick(counts);
               }}
             >
               =
