@@ -52,7 +52,7 @@ export function InputCalc(props) {
             updateCounts(e);
           }}
           onKeyDown={e => {
-            sendDataToHistory();
+            sendDataToHistory(e);
           }}
         ></Input>
         <Text>{result}</Text>

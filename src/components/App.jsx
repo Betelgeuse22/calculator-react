@@ -1,4 +1,5 @@
 import { Calculator } from './Calculator';
+import { Converter } from './Converter';
 import { Menu } from './Menu';
 
 import { useState } from 'react';
@@ -13,9 +14,9 @@ export const App = () => {
     case 'Calculator':
       application = <Calculator />;
       break;
-    // case 'Converter':
-    //   application = <Converter />;
-    //   break;
+    case 'Converter':
+      application = <Converter />;
+      break;
     default:
       application = <Calculator />;
   }

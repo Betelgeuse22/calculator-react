@@ -1,7 +1,7 @@
 import { Box, Button, List, SlideFade, useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
-export function Menu(onClick) {
+export function Menu({ onClick }) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -33,6 +33,7 @@ export function Menu(onClick) {
             <Button
               onClick={() => {
                 onClick('Calculator');
+                onToggle();
               }}
             >
               Calculator
@@ -40,6 +41,7 @@ export function Menu(onClick) {
             <Button
               onClick={() => {
                 onClick('Converter');
+                onToggle();
               }}
             >
               Converter
